@@ -1,10 +1,12 @@
+import './index.css';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import { App } from 'components/App';
+import App from 'components/App';
 import { ThemeProvider } from 'styled-components';
 import { theme } from 'utils/theme';
 import { BrowserRouter } from 'react-router-dom';
+
+// import * as api from './services/movieDatabaseApi';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -16,3 +18,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </BrowserRouter>
   </React.StrictMode>
 );
+
+// api.getTrendings().then(console.log);
+// api.searchMovie('bullet').then(console.log);
