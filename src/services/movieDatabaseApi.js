@@ -1,10 +1,5 @@
 import axios from 'axios';
 
-// const API_KEY = '1936ce94882661ecfd75d2c22e8905aa';
-// axios.defaults.baseURL = 'https://api.themoviedb.org/3';
-// axios.defaults.headers.common['Authorization'] = API_KEY;
-// axios.defaults.headers['X-API-KEY'] = '1936ce94882661ecfd75d2c22e8905aa';
-
 const fetchMovies = axios.create({
   baseURL: 'https://api.themoviedb.org/3',
   params: {

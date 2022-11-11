@@ -7,7 +7,8 @@ export const theme = {
     secondaryBgd: '#f2f2f2;',
     success: '#68e36f',
     failure: '#f55742',
-    accent: '#42c5f5',
+    accent: '#e3513b',
+    hovered: '#d6867a',
   },
 
   borders: {},
@@ -33,6 +34,9 @@ export const theme = {
 
   shadows: {
     default: 'rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px',
+    secondary: `-webkit-box-shadow: 0px 4px 10px -1px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 4px 10px -1px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 4px 10px -1px rgba(0, 0, 0, 0.75);`,
   },
 
   space: ['0', '2px', '4px', '8px', '16px', '32px', '64px', '128px', '256px'],
