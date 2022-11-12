@@ -1,10 +1,13 @@
 import Box from 'components/Box';
+import AdditionalInfo from './AdditionalInfo';
+import ReturnLink from 'components/ReturnLink';
+import MovieMeta from './MovieMeta';
+import MoviImage from './MovieImage';
 import { useEffect, useState } from 'react';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { movieDetails } from 'services/movieDatabaseApi';
 import { BASE_IMG_URL } from 'utils/config';
-import { GoBackLink, StyledLink } from './MovieDetails.styled';
-import { HiArrowNarrowLeft } from 'react-icons/hi';
+import imagePlugSrc from 'images/movieCardPlug.jpg';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -29,57 +32,29 @@ const MovieDetails = () => {
     release_date,
     vote_average,
     vote_count,
+    poster_path,
   } = movie;
+
+  const imageSrc = poster_path ? BASE_IMG_URL + poster_path : imagePlugSrc;
 
   return (
     <>
-      <Box>
-        <GoBackLink to={location.state.from}>
-          <HiArrowNarrowLeft />
-          <span>Go back</span>
-        </GoBackLink>
-        <h1 hidden> Movie details</h1>
-      </Box>
+      <ReturnLink to={location.state?.from ?? '/'} text="Go back" />
+      <h1 hidden> Movie details</h1>
       <Box display="flex" borderBottom="1px solid" borderColor={'secondaryBgd'}>
-        <Box width={200}>
-          {/* set plug if no image poster!!!!!!!!! */}
-          <img src={BASE_IMG_URL + movie.poster_path} alt="" width="200" />
-        </Box>
+        <MoviImage src={imageSrc} alt={original_title} width={200} />
 
-        <Box ml={4}>
-          <h2>
-            {original_title} ({new Date(release_date).getFullYear()})
-          </h2>
-          <p>
-            Vote/votes : {vote_average.toFixed(1)} / {vote_count}
-          </p>
-
-          <h3>Overview</h3>
-          <p>{overview}</p>
-
-          <h3>Genres</h3>
-          <p>
-            {genres.map(({ id, name }, i, arr) =>
-              i !== arr.length - 1 ? (
-                <span key={id}>{name}, </span>
-              ) : (
-                <span key={id}>{name}</span>
-              )
-            )}
-          </p>
-        </Box>
+        <MovieMeta
+          title={original_title}
+          date={new Date(release_date).getFullYear()}
+          voteAverage={vote_average.toFixed(1)}
+          voteCount={vote_count}
+          overview={overview}
+          genres={genres}
+        />
       </Box>
-      <Box borderBottom="1px solid" borderColor={'secondaryBgd'}>
-        <h4>Additional information</h4>
-        <ul>
-          <li>
-            <StyledLink to="cast">Cast</StyledLink>
-          </li>
-          <li>
-            <StyledLink to="reviews">Reviews</StyledLink>
-          </li>
-        </ul>
-      </Box>
+
+      <AdditionalInfo />
 
       <Box>
         <Outlet />
