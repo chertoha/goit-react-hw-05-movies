@@ -1,10 +1,11 @@
-import Box from 'components/Box';
 import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { getTrendings } from 'services/movieDatabaseApi';
 import { StyledLink, List, Item } from './Home.styled';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
+  const location = useLocation();
 
   useEffect(() => {
     getTrendings().then(setMovies).catch(console.log);
@@ -21,13 +22,14 @@ const Home = () => {
         {movies.map(({ id, title }) => {
           return (
             <Item key={id}>
-              <StyledLink to={'/movies/' + id}>{title}</StyledLink>
+              <StyledLink to={'/movies/' + id} state={{ from: location }}>
+                {title}
+              </StyledLink>
             </Item>
           );
         })}
       </List>
     </>
-    // <div>Trendingd Today <Link to="/movies/1313">movie link</Link></div>
   );
 };
 

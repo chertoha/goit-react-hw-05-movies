@@ -1,12 +1,16 @@
 import Box from 'components/Box';
 import { useEffect, useState } from 'react';
-import { Link, Outlet, useParams } from 'react-router-dom';
+import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { movieDetails } from 'services/movieDatabaseApi';
 import { BASE_IMG_URL } from 'utils/config';
+import { GoBackLink, StyledLink } from './MovieDetails.styled';
+import { HiArrowNarrowLeft } from 'react-icons/hi';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
+
+  const location = useLocation();
 
   useEffect(() => {
     movieDetails(movieId).then(setMovie).catch(console.log);
@@ -16,16 +20,24 @@ const MovieDetails = () => {
     return;
   }
 
-  console.log(movie);
+  // console.log(movie);
 
-  const { original_title, overview, genres, release_date } = movie;
+  const {
+    original_title,
+    overview,
+    genres,
+    release_date,
+    vote_average,
+    vote_count,
+  } = movie;
 
   return (
     <>
       <Box>
-        <Link>
-          <span>arrow-icon-</span>Go back
-        </Link>
+        <GoBackLink to={location.state.from}>
+          <HiArrowNarrowLeft />
+          <span>Go back</span>
+        </GoBackLink>
         <h1 hidden> Movie details</h1>
       </Box>
       <Box display="flex" borderBottom="1px solid" borderColor={'secondaryBgd'}>
@@ -34,11 +46,13 @@ const MovieDetails = () => {
           <img src={BASE_IMG_URL + movie.poster_path} alt="" width="200" />
         </Box>
 
-        <div>
+        <Box ml={4}>
           <h2>
-            {original_title} ({new Date()})
+            {original_title} ({new Date(release_date).getFullYear()})
           </h2>
-          <p>User score: </p>
+          <p>
+            Vote/votes : {vote_average.toFixed(1)} / {vote_count}
+          </p>
 
           <h3>Overview</h3>
           <p>{overview}</p>
@@ -53,16 +67,16 @@ const MovieDetails = () => {
               )
             )}
           </p>
-        </div>
+        </Box>
       </Box>
       <Box borderBottom="1px solid" borderColor={'secondaryBgd'}>
         <h4>Additional information</h4>
         <ul>
           <li>
-            <Link to="cast">Cast</Link>
+            <StyledLink to="cast">Cast</StyledLink>
           </li>
           <li>
-            <Link to="reviews">Reviews</Link>
+            <StyledLink to="reviews">Reviews</StyledLink>
           </li>
         </ul>
       </Box>
