@@ -1,5 +1,6 @@
 export const theme = {
   colors: {
+    link: '#1780d1',
     text: '#000',
     secondaryText: 'grey',
     inverseText: '#fff',
