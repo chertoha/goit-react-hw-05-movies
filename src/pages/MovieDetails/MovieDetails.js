@@ -2,7 +2,7 @@ import Box from 'components/Box';
 import AdditionalInfo from './AdditionalInfo';
 import ReturnLink from 'components/ReturnLink';
 import MovieMeta from './MovieMeta';
-import MoviImage from './MovieImage';
+import MovieImage from 'components/MovieImage';
 import { useEffect, useState } from 'react';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { movieDetails } from 'services/movieDatabaseApi';
@@ -40,10 +40,11 @@ const MovieDetails = () => {
   return (
     <>
       <ReturnLink to={location.state?.from ?? '/'} text="Go back" />
-      <h1 hidden> Movie details</h1>
-      <Box display="flex" borderBottom="1px solid" borderColor={'secondaryBgd'}>
-        <MoviImage src={imageSrc} alt={original_title} width={200} />
 
+      <h1 hidden> Movie details</h1>
+
+      <Box display="flex" borderBottom="1px solid" borderColor={'secondaryBgd'}>
+        <MovieImage src={imageSrc} alt={original_title} width={200} />
         <MovieMeta
           title={original_title}
           date={new Date(release_date).getFullYear()}

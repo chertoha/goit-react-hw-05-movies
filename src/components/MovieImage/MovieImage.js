@@ -1,6 +1,6 @@
 import Box from 'components/Box';
 
-const MoviImage = ({ src, alt, width }) => {
+const MovieImage = ({ src, alt, width }) => {
   return (
     <Box width={width}>
       <img src={src} alt={alt} width={width} />
@@ -8,4 +8,4 @@ const MoviImage = ({ src, alt, width }) => {
   );
 };
 
-export default MoviImage;
+export default MovieImage;
