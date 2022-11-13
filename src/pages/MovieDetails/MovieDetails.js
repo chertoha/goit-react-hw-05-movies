@@ -43,7 +43,12 @@ const MovieDetails = () => {
 
       <h1 hidden> Movie details</h1>
 
-      <Box display="flex" borderBottom="1px solid" borderColor={'secondaryBgd'}>
+      <Box
+        display="flex"
+        borderBottom="1px solid"
+        borderColor={'secondaryBgd'}
+        pb={4}
+      >
         <MovieImage src={imageSrc} alt={original_title} width={200} />
         <MovieMeta
           title={original_title}

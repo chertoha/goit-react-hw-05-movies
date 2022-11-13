@@ -11,28 +11,34 @@ const MovieMeta = ({
 }) => {
   return (
     <Box ml={4}>
-      <h2>
+      <Box as="h2" m={0} mb={5}>
         {title ? `${title} ` : `No title info`}
         {date && `(${date})`}
-      </h2>
+      </Box>
 
       {voteAverage && voteCount && (
-        <p>
+        <Box m={0} mb={5}>
           Vote/votes : {voteAverage} / {voteCount}
-        </p>
+        </Box>
       )}
 
       {overview && (
         <>
-          <h3>Overview</h3>
-          <p>{overview}</p>
+          <Box as="h3" m={0} mb={3}>
+            Overview
+          </Box>
+          <Box as="p" m={0} mb={5}>
+            {overview}
+          </Box>
         </>
       )}
 
       {genres && (
         <>
-          <h3>Genres</h3>
-          <p>
+          <Box as="h3" m={0} mb={3}>
+            Genres
+          </Box>
+          <Box as="p" m={0}>
             {genres.map(({ id, name }, i, arr) =>
               i !== arr.length - 1 ? (
                 <span key={id}>{name}, </span>
@@ -40,7 +46,7 @@ const MovieMeta = ({
                 <span key={id}>{name}</span>
               )
             )}
-          </p>
+          </Box>
         </>
       )}
     </Box>

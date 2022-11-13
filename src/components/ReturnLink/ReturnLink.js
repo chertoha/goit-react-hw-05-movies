@@ -5,10 +5,12 @@ import { HiArrowNarrowLeft } from 'react-icons/hi';
 
 const ReturnLink = ({ to, text = '' }) => {
   return (
-    <Box>
+    <Box pb={2}>
       <GoBackLink to={to}>
         <HiArrowNarrowLeft />
-        <span>{text}</span>
+        <Box as="span" ml={2}>
+          {text}
+        </Box>
       </GoBackLink>
     </Box>
   );

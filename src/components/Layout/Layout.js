@@ -15,7 +15,7 @@ const Layout = () => {
           </NavItem>
         </Box>
       </Box>
-      <Box as="main" pl={5}>
+      <Box as="main" pl={5} pt={3}>
         <Outlet />
       </Box>
     </Box>

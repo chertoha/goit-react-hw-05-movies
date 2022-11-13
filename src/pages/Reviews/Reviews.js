@@ -1,3 +1,4 @@
+import Box from 'components/Box';
 import Loader from 'components/Loader';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -24,7 +25,7 @@ const Reviews = () => {
       });
   }, [movieId]);
 
-  console.log(reviews);
+  // console.log(reviews);
 
   if (status === STATUS.IDLE) return;
 
@@ -39,14 +40,18 @@ const Reviews = () => {
     }
 
     return (
-      <ul>
+      <Box as="ul" pt={4}>
         {reviews.map(({ id, author, content }) => (
           <li key={id}>
-            <h4>Author: {author} </h4>
-            <p>{content}</p>
+            <Box as="h4" m={0} mb={2}>
+              Author: {author}{' '}
+            </Box>
+            <Box as="p" m={0} mb={5}>
+              {content}
+            </Box>
           </li>
         ))}
-      </ul>
+      </Box>
     );
   }
 };
