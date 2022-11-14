@@ -26,7 +26,7 @@ MoviesList.propTypes = {
     PropTypes.shape({
       id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
       title: PropTypes.string.isRequired,
-    })
+    }).isRequired
   ),
   path: PropTypes.string.isRequired,
   state: PropTypes.shape({

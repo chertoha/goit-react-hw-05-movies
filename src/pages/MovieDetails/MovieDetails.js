@@ -14,6 +14,7 @@ const MovieDetails = () => {
   const [movie, setMovie] = useState(null);
 
   const location = useLocation();
+  // console.log(location);
 
   useEffect(() => {
     movieDetails(movieId).then(setMovie).catch(console.log);
@@ -37,9 +38,11 @@ const MovieDetails = () => {
 
   const imageSrc = poster_path ? BASE_IMG_URL + poster_path : imagePlugSrc;
 
+  const locationForBackLink = location.state?.from ?? '/';
+
   return (
     <>
-      <ReturnLink to={location.state?.from ?? '/'} text="Go back" />
+      <ReturnLink to={locationForBackLink} text="Go back" />
 
       <h1 hidden> Movie details</h1>
 
@@ -60,7 +63,7 @@ const MovieDetails = () => {
         />
       </Box>
 
-      <AdditionalInfo />
+      <AdditionalInfo location={locationForBackLink} />
 
       <Box>
         <Outlet />
