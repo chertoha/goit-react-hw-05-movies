@@ -4,6 +4,7 @@ import MovieDetails from 'pages/MovieDetails';
 import Cast from 'pages/Cast';
 import Reviews from 'pages/Reviews';
 import Movies from 'pages/Movies';
+import NotFoundPage from 'pages/NotFoundPage';
 import { Routes, Route } from 'react-router-dom';
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
           <Route path="cast" element={<Cast />} />
           <Route path="reviews" element={<Reviews />} />
         </Route>
+        <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
   );
