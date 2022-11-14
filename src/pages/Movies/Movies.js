@@ -48,8 +48,7 @@ const Movies = () => {
         display="flex"
         alignItems="center"
         height={25}
-        pt={4}
-        pl={4}
+        pt={5}
         mb={4}
       >
         <Field type="text" name="search" placeholder="Search movie" />

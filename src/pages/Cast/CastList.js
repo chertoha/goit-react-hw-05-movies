@@ -7,6 +7,8 @@ import { BASE_IMG_URL } from 'utils/config';
 import { Item } from './CastList.styled';
 
 const CastList = ({ cast }) => {
+  // console.log(cast);
+
   if (cast.length === 0) {
     return <p>We don't have cast information for this movie.</p>;
   }
@@ -15,7 +17,7 @@ const CastList = ({ cast }) => {
     <Box as="ul" pt={5}>
       {cast.map(
         ({
-          id,
+          credit_id,
           gender = 0,
           name = 'No info',
           character = 'No info',
@@ -26,7 +28,7 @@ const CastList = ({ cast }) => {
             : defautlAvatar(gender);
 
           return (
-            <Item key={id}>
+            <Item key={credit_id}>
               <MovieImage src={imageSrc} alt={name} width={100} />
               <ActorMeta name={name} character={character} />
             </Item>
@@ -40,7 +42,8 @@ const CastList = ({ cast }) => {
 CastList.propTypes = {
   cast: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      credit_id: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+        .isRequired,
       gender: PropTypes.number,
     })
   ),

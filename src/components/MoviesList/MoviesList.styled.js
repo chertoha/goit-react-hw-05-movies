@@ -2,9 +2,8 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const List = styled('ul')`
-  list-style: decimal;
+  /* list-style: decimal; */
   font-size: ${p => p.theme.fontSizes.lg};
-  padding-left: ${p => p.theme.space[5]};
 `;
 
 export const Item = styled('li')`

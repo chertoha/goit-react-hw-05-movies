@@ -3,7 +3,7 @@ import { StyledLink, List, Item } from './MoviesList.styled';
 
 const MoviesList = ({ movies, path, state }) => {
   if (movies.length === 0) {
-    return <p>Sorry, We found nothing </p>;
+    return <p>Sorry, We found nothing. </p>;
   }
 
   return (
