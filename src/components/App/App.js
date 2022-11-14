@@ -4,8 +4,7 @@ import MovieDetails from 'pages/MovieDetails';
 import Cast from 'pages/Cast';
 import Reviews from 'pages/Reviews';
 import Movies from 'pages/Movies';
-import NotFoundPage from 'pages/NotFoundPage';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 const App = () => {
   return (
@@ -17,7 +16,7 @@ const App = () => {
           <Route path="cast" element={<Cast />} />
           <Route path="reviews" element={<Reviews />} />
         </Route>
-        <Route path="*" element={<NotFoundPage />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
     </Routes>
   );

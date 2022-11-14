@@ -5,26 +5,38 @@ import MovieMeta from './MovieMeta';
 import MovieImage from 'components/MovieImage';
 import imagePlugSrc from 'images/movieCardPlug.jpg';
 import { useEffect, useState } from 'react';
-import { Outlet, useLocation, useParams } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { movieDetails } from 'services/movieDatabaseApi';
 import { BASE_IMG_URL } from 'utils/config';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const location = useLocation();
   // console.log(location);
 
   useEffect(() => {
-    movieDetails(movieId).then(setMovie).catch(console.log);
-  }, [movieId]);
+    movieDetails(movieId)
+      .then(setMovie)
+      .catch(error => {
+        setError(error.message);
+
+        setTimeout(() => {
+          navigate('/', { replace: true });
+        }, 2000);
+      });
+  }, [movieId, navigate]);
+
+  if (error) {
+    return <h1>Don't play with URL please. It's not funny</h1>;
+  }
 
   if (!movie) {
     return;
   }
-
-  // console.log(movie);
 
   const {
     original_title,

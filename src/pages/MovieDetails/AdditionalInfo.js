@@ -25,7 +25,7 @@ const AdditionalInfo = ({ location }) => {
 };
 
 AdditionalInfo.propTypes = {
-  location: PropTypes.object,
+  location: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };
 
 export default AdditionalInfo;
