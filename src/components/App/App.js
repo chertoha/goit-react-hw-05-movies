@@ -1,9 +1,5 @@
 import Layout from 'components/Layout';
 import Home from 'pages/Home';
-// import MovieDetails from 'pages/MovieDetails';
-// import Cast from 'pages/Cast';
-// import Reviews from 'pages/Reviews';
-// import Movies from 'pages/Movies';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { lazy } from 'react';
 
