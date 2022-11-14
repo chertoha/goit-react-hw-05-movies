@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Meta, Paragraph, Label } from './Cast.styled';
+import { Meta, Paragraph, Label } from './CastList.styled';
 
 const ActorMeta = ({ name = 'No info', character = 'No info' }) => {
   return (

@@ -1,30 +1,34 @@
 import MoviesList from 'components/MoviesList';
+import StatusListWrapper from 'components/StatusListWrapper';
 import { useEffect, useState } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { searchMovie } from 'services/movieDatabaseApi';
+import { STATUS } from 'utils/config';
 
 const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
   const [movies, setMovies] = useState(null);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState(STATUS.IDLE);
 
   const query = searchParams.get('query');
 
   useEffect(() => {
     if (!query) return;
 
-    setLoading(true);
+    setStatus(STATUS.PENDING);
     searchMovie(query)
       .then(result => {
-        console.log(result);
+        // throw new Error('Test Error');
+        // console.log(result);
+        setStatus(STATUS.RESOLVED);
         setMovies(result);
       })
       .catch(error => {
         setError(error.message);
-      })
-      .finally(setLoading(false));
+        setStatus(STATUS.REJECTED);
+      });
   }, [query]);
 
   const onSearch = e => {
@@ -41,14 +45,13 @@ const Movies = () => {
         <button type="submit">Search</button>
       </form>
 
-      {loading && <div>Loading...</div>}
-      {movies ?? (
+      <StatusListWrapper status={status} error={error}>
         <MoviesList
           movies={movies}
           path={'/movies/'}
           state={{ from: location }}
         />
-      )}
+      </StatusListWrapper>
     </>
   );
 };
