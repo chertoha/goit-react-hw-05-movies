@@ -1,9 +1,11 @@
+import Box from 'components/Box';
 import MoviesList from 'components/MoviesList';
 import StatusListWrapper from 'components/StatusListWrapper';
 import { useEffect, useState } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { searchMovie } from 'services/movieDatabaseApi';
 import { STATUS } from 'utils/config';
+import { Field, Button } from './Movies.styled';
 
 const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -40,10 +42,19 @@ const Movies = () => {
 
   return (
     <>
-      <form onSubmit={onSearch}>
-        <input type="text" name="search" placeholder="Search movie" />
-        <button type="submit">Search</button>
-      </form>
+      <Box
+        onSubmit={onSearch}
+        as="form"
+        display="flex"
+        alignItems="center"
+        height={25}
+        pt={4}
+        pl={4}
+        mb={4}
+      >
+        <Field type="text" name="search" placeholder="Search movie" />
+        <Button type="submit">Search</Button>
+      </Box>
 
       <StatusListWrapper status={status} error={error}>
         <MoviesList
