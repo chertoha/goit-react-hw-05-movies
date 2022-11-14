@@ -16,7 +16,7 @@ const Layout = () => {
           </NavItem>
         </Box>
       </Box>
-      <Box as="main" pl={5} pt={3}>
+      <Box as="main" pl={5} pt={3} pr={5} pb={5}>
         <Suspense>
           <Outlet />
         </Suspense>
