@@ -1,14 +1,28 @@
 import MoviesList from 'components/MoviesList';
+import StatusListWrapper from 'components/StatusListWrapper';
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { getTrendings } from 'services/movieDatabaseApi';
+import { STATUS } from 'utils/config';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
+  const [status, setStatus] = useState(STATUS.IDLE);
+  const [error, setError] = useState(null);
   const location = useLocation();
 
   useEffect(() => {
-    getTrendings().then(setMovies).catch(console.log);
+    setStatus(STATUS.PENDING);
+    getTrendings()
+      .then(result => {
+        // throw new Error('Test Error');
+        setStatus(STATUS.RESOLVED);
+        setMovies(result);
+      })
+      .catch(error => {
+        setError(error.message);
+        setStatus(STATUS.REJECTED);
+      });
   }, []);
 
   if (!movies) {
@@ -19,11 +33,13 @@ const Home = () => {
     <>
       <h1>Tranding today</h1>
 
-      <MoviesList
-        movies={movies}
-        path={'/movies/'}
-        state={{ from: location }}
-      />
+      <StatusListWrapper status={status} error={error}>
+        <MoviesList
+          movies={movies}
+          path={'/movies/'}
+          state={{ from: location }}
+        />
+      </StatusListWrapper>
     </>
   );
 };

@@ -33,7 +33,7 @@ const MovieMeta = ({
         </>
       )}
 
-      {genres && (
+      {genres && genres.length > 0 && (
         <>
           <Box as="h3" m={0} mb={3}>
             Genres
