@@ -1,4 +1,5 @@
 import Box from 'components/Box';
+import PropTypes from 'prop-types';
 import { StyledLink } from './MovieDetails.styled';
 
 const AdditionalInfo = ({ location }) => {
@@ -21,6 +22,10 @@ const AdditionalInfo = ({ location }) => {
       </Box>
     </Box>
   );
+};
+
+AdditionalInfo.propTypes = {
+  location: PropTypes.object,
 };
 
 export default AdditionalInfo;
