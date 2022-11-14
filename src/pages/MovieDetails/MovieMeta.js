@@ -39,13 +39,12 @@ const MovieMeta = ({
             Genres
           </Box>
           <Box as="p" m={0}>
-            {genres.map(({ id, name }, i, arr) =>
-              i !== arr.length - 1 ? (
-                <span key={id}>{name}, </span>
-              ) : (
-                <span key={id}>{name}</span>
-              )
-            )}
+            {genres.map(({ id, name }, i, arr) => (
+              <span key={id}>
+                {name}
+                {i !== arr.length - 1 ? ', ' : ''}
+              </span>
+            ))}
           </Box>
         </>
       )}

@@ -3,11 +3,11 @@ import AdditionalInfo from './AdditionalInfo';
 import ReturnLink from 'components/ReturnLink';
 import MovieMeta from './MovieMeta';
 import MovieImage from 'components/MovieImage';
+import imagePlugSrc from 'images/movieCardPlug.jpg';
 import { useEffect, useState } from 'react';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { movieDetails } from 'services/movieDatabaseApi';
 import { BASE_IMG_URL } from 'utils/config';
-import imagePlugSrc from 'images/movieCardPlug.jpg';
 
 const MovieDetails = () => {
   const { movieId } = useParams();

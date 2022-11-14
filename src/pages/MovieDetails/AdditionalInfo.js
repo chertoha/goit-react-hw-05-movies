@@ -1,5 +1,4 @@
 import Box from 'components/Box';
-
 import { StyledLink } from './MovieDetails.styled';
 
 const AdditionalInfo = ({ location }) => {
