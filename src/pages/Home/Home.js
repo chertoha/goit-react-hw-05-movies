@@ -31,7 +31,7 @@ const Home = () => {
 
   return (
     <>
-      <h1>Tranding today</h1>
+      <h1>Trending today</h1>
 
       <StatusListWrapper status={status} error={error}>
         <MoviesList
